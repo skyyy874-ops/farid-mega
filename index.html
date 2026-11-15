@@ -1,0 +1,1286 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Farid & Mega</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #241719;
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    color: #fff;
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 100dvh;
+    max-height: 900px;
+    aspect-ratio: 9 / 16;
+    margin: auto;
+    overflow: hidden;
+    background: #3b2729;
+}
+
+/* SLIDE UTAMA */
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 0;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+/* BACKGROUND */
+.slide-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(35,19,22,.20),
+        rgba(35,19,22,.48)
+    );
+    z-index: 1;
+}
+
+/* ISI SLIDE */
+.content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 35px 27px 75px;
+    scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.kicker {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #f4d9b6;
+    margin-bottom: 16px;
+}
+
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: clamp(43px, 11vw, 64px);
+    line-height: 1.02;
+    color: #fff7eb;
+}
+
+h2 {
+    font-size: clamp(34px, 9vw, 47px);
+    line-height: 1.08;
+    color: #fff7eb;
+    margin-bottom: 18px;
+}
+
+h3 {
+    font-size: 28px;
+    color: #f6dfc1;
+}
+
+p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #fff7ee;
+}
+
+.gold {
+    color: #f2d0a1;
+}
+
+.ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 35px;
+    color: #eac18d;
+    margin: 5px 0;
+}
+
+.small-line {
+    width: 55px;
+    height: 1px;
+    background: #e7c18e;
+    margin: 18px auto;
+}
+
+/* FOTO */
+.photo {
+    display: block;
+    margin: 20px auto;
+    object-fit: contain;
+    object-position: center;
+    background: rgba(255,255,255,.08);
+    border: 2px solid rgba(244,218,181,.85);
+    box-shadow: 0 12px 35px rgba(0,0,0,.3);
+}
+
+.photo-oval {
+    width: 210px;
+    height: 270px;
+    border-radius: 50%;
+}
+
+.photo-arch {
+    width: 190px;
+    height: 250px;
+    border-radius: 50% 50% 12px 12px;
+}
+
+.photo-pill {
+    width: 145px;
+    height: 220px;
+    border-radius: 100px;
+}
+
+.photo-circle {
+    width: 185px;
+    height: 185px;
+    border-radius: 50%;
+}
+
+.photo-wide {
+    width: 245px;
+    height: 175px;
+    border-radius: 100px 100px 25px 25px;
+}
+
+/* COVER */
+.cover .content {
+    padding-top: 28px;
+}
+
+.cover-photo {
+    width: 180px;
+    height: 230px;
+    border-radius: 50% 50% 45% 45%;
+    margin: 20px auto;
+}
+
+.cover h1 {
+    font-size: clamp(40px, 10vw, 58px);
+}
+
+.cover .names {
+    margin: 12px 0;
+}
+
+/* INFORMASI */
+.info-box {
+    max-width: 330px;
+    margin: 17px auto;
+    padding: 18px 17px;
+    border: 1px solid rgba(242,208,161,.65);
+    background: rgba(40,22,25,.38);
+    backdrop-filter: blur(5px);
+    border-radius: 4px;
+}
+
+.info-box h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.info-box p {
+    font-size: 13px;
+}
+
+.parent-name {
+    margin-top: 7px;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* GALERI */
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    max-width: 340px;
+    margin: 20px auto;
+    align-items: center;
+}
+
+.gallery img {
+    width: 100%;
+    object-fit: contain;
+    background: rgba(255,255,255,.08);
+    border: 2px solid #e8c79c;
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+.gallery .g1 {
+    height: 155px;
+    border-radius: 100px 100px 20px 20px;
+}
+
+.gallery .g2 {
+    height: 175px;
+    border-radius: 50%;
+}
+
+.gallery .g3 {
+    height: 175px;
+    border-radius: 50% 50% 12px 12px;
+}
+
+.gallery .g4 {
+    height: 155px;
+    border-radius: 100px;
+}
+
+.gallery .g5 {
+    grid-column: 1 / 3;
+    width: 165px;
+    height: 190px;
+    justify-self: center;
+    border-radius: 50%;
+}
+
+/* COUNTDOWN */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    margin: 25px auto;
+}
+
+.time-box {
+    width: 68px;
+    padding: 13px 5px;
+    background: rgba(40,22,25,.6);
+    border: 1px solid #e8c79c;
+}
+
+.time-box strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 29px;
+    color: #f4d5aa;
+}
+
+.time-box span {
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+/* TOMBOL */
+.btn {
+    display: inline-block;
+    border: 1px solid #e9c99f;
+    color: #fff7eb;
+    background: rgba(45,25,27,.55);
+    padding: 12px 24px;
+    margin-top: 18px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #e7c18e;
+    color: #392326;
+}
+
+/* FORM RSVP */
+.rsvp-form {
+    max-width: 330px;
+    margin: 20px auto;
+    text-align: left;
+    padding: 18px;
+    background: rgba(40,22,25,.55);
+    border: 1px solid rgba(242,208,161,.7);
+}
+
+.rsvp-form label {
+    display: block;
+    font-size: 12px;
+    color: #f7dfc1;
+    margin: 12px 0 6px;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddbd96;
+    background: rgba(255,255,255,.94);
+    color: #382528;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    border-radius: 3px;
+    outline: none;
+}
+
+.rsvp-form textarea {
+    resize: vertical;
+    min-height: 75px;
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* NAVIGASI */
+.navigation {
+    position: absolute;
+    z-index: 20;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e8c79c;
+    background: rgba(38,22,25,.65);
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.slide-number {
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+    min-width: 50px;
+}
+
+.progress {
+    position: absolute;
+    z-index: 21;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: #e8c79c;
+    transition: width .5s;
+}
+
+.music-btn {
+    position: absolute;
+    z-index: 25;
+    top: 17px;
+    right: 17px;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: rgba(38,22,25,.7);
+    border: 1px solid #e8c79c;
+    color: white;
+    cursor: pointer;
+}
+
+/* =================================
+   TRANSISI BERBEDA SETIAP SLIDE
+================================= */
+
+.slide.active.effect-fade {
+    animation: fadeIn 1s both;
+}
+
+.slide.active.effect-up {
+    animation: riseIn 1s both;
+}
+
+.slide.active.effect-down {
+    animation: dropIn 1s both;
+}
+
+.slide.active.effect-left {
+    animation: slideFromLeft 1s both;
+}
+
+.slide.active.effect-right {
+    animation: slideFromRight 1s both;
+}
+
+.slide.active.effect-zoom {
+    animation: zoomIn 1.2s both;
+}
+
+.slide.active.effect-zoom-out {
+    animation: zoomOutIn 1.2s both;
+}
+
+.slide.active.effect-blur {
+    animation: blurIn 1.2s both;
+}
+
+.slide.active.effect-diagonal {
+    animation: diagonalIn 1.1s both;
+}
+
+.slide.active.effect-rotate {
+    animation: rotateIn 1.1s both;
+}
+
+.slide.active.effect-soft {
+    animation: softIn 1.3s both;
+}
+
+.slide.active.effect-flip {
+    animation: flipIn 1.1s both;
+}
+
+.slide.active.effect-glow {
+    animation: glowIn 1.2s both;
+}
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(65px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-65px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-90px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(90px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(.72);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOutIn {
+    from {
+        opacity: 0;
+        transform: scale(1.25);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes blurIn {
+    from {
+        opacity: 0;
+        filter: blur(12px);
+        transform: scale(1.04);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+@keyframes diagonalIn {
+    from {
+        opacity: 0;
+        transform: translate(55px,55px) scale(.92);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0,0) scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: scale(.85) rotate(-4deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes softIn {
+    from {
+        opacity: 0;
+        transform: scale(.95);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes flipIn {
+    from {
+        opacity: 0;
+        transform: perspective(700px) rotateY(-18deg);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(700px) rotateY(0);
+    }
+}
+
+@keyframes glowIn {
+    from {
+        opacity: 0;
+        filter: brightness(1.8);
+        transform: scale(1.08);
+    }
+    to {
+        opacity: 1;
+        filter: brightness(1);
+        transform: scale(1);
+    }
+}
+
+/* ANIMASI ISI SLIDE 3 */
+.slide:nth-of-type(3).active .content > div > div:first-child,
+.slide:nth-of-type(3).active .content > div > div:last-child {
+    animation: coupleReveal 1s .35s both;
+}
+
+@keyframes coupleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 380px) {
+    .content {
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .photo-oval {
+        width: 175px;
+        height: 225px;
+    }
+
+    .photo-arch {
+        width: 165px;
+        height: 220px;
+    }
+
+    .info-box {
+        padding: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="book" id="book">
+
+<audio id="music" loop>
+    <source src="{{ url_for('static', filename='musik.mp3') }}" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicButton" onclick="toggleMusic()">♫</button>
+
+<!-- SLIDE 1 -->
+<section class="slide cover active effect-zoom">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg01.png') }}" alt="Background 1">
+
+    <div class="content">
+        <div class="kicker">The Wedding Invitation</div>
+        <p>Dengan penuh rasa syukur, kami mengundang</p>
+
+        <img class="photo cover-photo"
+             src="{{ url_for('static', filename='foto1.jpg') }}"
+             alt="Foto pengantin">
+
+        <h1 class="names">Farid <span class="gold">&</span> Mega</h1>
+
+        <div class="small-line"></div>
+        <p>11 – 13 Desember 2026</p>
+        <p class="gold" style="margin-top:8px;">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+
+        <button class="btn" onclick="openInvitation()">BUKA UNDANGAN</button>
+    </div>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg02.png') }}" alt="Background 2">
+
+    <div class="content">
+        <div class="kicker">Assalamu'alaikum Warahmatullahi Wabarakatuh</div>
+        <h2>Dengan Memohon<br><span class="gold">Rahmat Allah SWT</span></h2>
+        <div class="small-line"></div>
+        <p>
+            Dengan memohon rahmat dan ridho Allah SWT,
+            kami bermaksud menyelenggarakan acara pernikahan
+            putra-putri kami.
+        </p>
+        <p style="margin-top:18px;">
+            Merupakan suatu kehormatan dan kebahagiaan
+            bagi kami apabila Bapak/Ibu/Saudara/i berkenan
+            hadir untuk memberikan doa restu.
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg03.png') }}" alt="Background 3">
+
+    <div class="content" style="padding:18px 18px 65px; overflow:hidden;">
+
+        <div class="kicker" style="margin-bottom:8px;">THE BRIDE & GROOM</div>
+
+        <h2 style="font-size:36px; margin-bottom:5px;">
+            Meet The<br><span class="gold">Happy Couple</span>
+        </h2>
+
+        <div style="display:flex; justify-content:center; align-items:flex-start; gap:12px; max-width:350px; margin:15px auto;">
+
+            <div style="flex:1; min-width:0;">
+                <img src="{{ url_for('static', filename='foto2.jpg') }}"
+                     alt="Foto Farid"
+                     style="display:block;width:100%;max-width:125px;height:145px;margin:0 auto 9px;object-fit:contain;object-position:center;border:2px solid #e8c79c;border-radius:50%;background:rgba(255,255,255,.08);">
+
+                <h3 style="font-size:23px;margin-bottom:2px;">Farid</h3>
+                <p style="font-size:11px;">Alamsyah, S.Pd</p>
+                <div class="small-line" style="margin:8px auto;"></div>
+                <p style="font-size:10px;line-height:1.5;">
+                    Putra bungsu<br>
+                    Bapak Sarimin<br>
+                    & Ibu Tumilah
+                </p>
+            </div>
+
+            <div style="font-family:'Cormorant Garamond',serif;font-size:35px;color:#f2d0a1;padding-top:45px;flex-shrink:0;">&</div>
+
+            <div style="flex:1; min-width:0;">
+                <img src="{{ url_for('static', filename='foto3.jpg') }}"
+                     alt="Foto Mega"
+                     style="display:block;width:100%;max-width:125px;height:145px;margin:0 auto 9px;object-fit:contain;object-position:center;border:2px solid #e8c79c;border-radius:50%;background:rgba(255,255,255,.08);">
+
+                <h3 style="font-size:23px;margin-bottom:2px;">Mega</h3>
+                <p style="font-size:11px;">Silvia, S.Pd</p>
+                <div class="small-line" style="margin:8px auto;"></div>
+                <p style="font-size:10px;line-height:1.5;">
+                    Putri sulung<br>
+                    Bapak Minarto<br>
+                    & Ibu Nurbaniah
+                </p>
+            </div>
+
+        </div>
+
+        <div class="small-line" style="margin:10px auto;"></div>
+        <p class="gold" style="font-size:12px;">Two Hearts, One Beautiful Journey</p>
+    </div>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg04.png') }}" alt="Background 4">
+
+    <div class="content">
+        <div class="kicker">A Special Day</div>
+        <h2>Two Hearts,<br><span class="gold">One Promise</span></h2>
+
+        <img class="photo photo-pill"
+             src="{{ url_for('static', filename='foto4.jpg') }}"
+             alt="Foto pasangan">
+
+        <p>
+            Dua insan, dua perjalanan,
+            dan satu tujuan untuk membangun
+            kehidupan bersama dalam ikatan suci pernikahan.
+        </p>
+        <div class="small-line"></div>
+        <h3>11 Desember 2026</h3>
+    </div>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg05.png') }}" alt="Background 5">
+
+    <div class="content">
+        <div class="kicker">The Wedding Ceremony</div>
+        <h2>Akad<br><span class="gold">Nikah</span></h2>
+
+        <div class="info-box">
+            <h3>Jumat</h3>
+            <p>11 Desember 2026</p>
+            <div class="small-line"></div>
+            <h3>08.00 WIB</h3>
+            <p>Rumah Mempelai Wanita</p>
+        </div>
+
+        <p>
+            Semoga Allah SWT melancarkan
+            dan memberkahi setiap langkah
+            menuju ikatan pernikahan ini.
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 6 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg06.png') }}" alt="Background 6">
+
+    <div class="content">
+        <div class="kicker">Wedding Reception</div>
+        <h2>Resepsi<br><span class="gold">Pernikahan</span></h2>
+
+        <div class="info-box">
+            <h3>Sabtu – Minggu</h3>
+            <p>12 – 13 Desember 2026</p>
+            <div class="small-line"></div>
+            <h3>13.00 WIB – Selesai</h3>
+            <p>Tempat acara resepsi</p>
+            <p class="gold" style="margin-top:8px;">
+                Informasi lokasi dapat disesuaikan.
+            </p>
+        </div>
+
+        <p>
+            Kehadiran serta doa restu
+            Bapak/Ibu/Saudara/i merupakan
+            kebahagiaan bagi kami.
+        </p>
+    </div>
+</section>
+
+<!-- SLIDE 7 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg07.png') }}" alt="Background 7">
+
+    <div class="content">
+        <div class="kicker">Our Memories</div>
+        <h2>Captured<br><span class="gold">Moments</span></h2>
+
+        <div class="gallery">
+            <img class="g1" src="{{ url_for('static', filename='foto1.jpg') }}" alt="Kenangan 1">
+            <img class="g2" src="{{ url_for('static', filename='foto2.jpg') }}" alt="Kenangan 2">
+            <img class="g3" src="{{ url_for('static', filename='foto3.jpg') }}" alt="Kenangan 3">
+            <img class="g4" src="{{ url_for('static', filename='foto4.jpg') }}" alt="Kenangan 4">
+            <img class="g5" src="{{ url_for('static', filename='foto5.jpg') }}" alt="Kenangan 5">
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 8 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg08.png') }}" alt="Background 8">
+
+    <div class="content">
+        <div class="kicker">Our Story</div>
+        <h2>A Beautiful<br><span class="gold">Journey</span></h2>
+
+        <img class="photo photo-wide"
+             src="{{ url_for('static', filename='foto5.jpg') }}"
+             alt="Foto kenangan">
+
+        <p>
+            Setiap pertemuan memiliki cerita.
+            Setiap perjalanan memiliki makna.
+            Kini, dua hati memilih untuk melangkah
+            bersama dalam satu ikatan suci.
+        </p>
+
+        <div class="small-line"></div>
+        <p class="gold">Forever begins with you.</p>
+    </div>
+</section>
+
+<!-- SLIDE 9 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg09.png') }}" alt="Background 9">
+
+    <div class="content">
+        <div class="kicker">Counting The Days</div>
+        <h2>Menuju Hari<br><span class="gold">Bahagia</span></h2>
+
+        <p>11 Desember 2026</p>
+
+        <div class="countdown">
+            <div class="time-box">
+                <strong id="days">00</strong>
+                <span>HARI</span>
+            </div>
+            <div class="time-box">
+                <strong id="hours">00</strong>
+                <span>JAM</span>
+            </div>
+            <div class="time-box">
+                <strong id="minutes">00</strong>
+                <span>MENIT</span>
+            </div>
+            <div class="time-box">
+                <strong id="seconds">00</strong>
+                <span>DETIK</span>
+            </div>
+        </div>
+
+        <p class="gold">A new chapter is about to begin.</p>
+    </div>
+</section>
+
+<!-- SLIDE 10 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg10.png') }}" alt="Background 10">
+
+    <div class="content">
+        <div class="kicker">Wedding Gift</div>
+        <h2>Tanda Kasih<br><span class="gold">Untuk Kedua Mempelai</span></h2>
+
+        <p>
+            Doa restu Anda merupakan hadiah
+            terindah bagi kami.
+            Namun, apabila ingin memberikan tanda kasih,
+            dapat melalui rekening berikut.
+        </p>
+
+        <div class="info-box">
+            <h3>BNI</h3>
+            <p style="font-size:19px;letter-spacing:2px;">1238418704</p>
+            <div class="small-line"></div>
+            <p>AN Mega Silvia</p>
+            <button class="btn" onclick="copyAccount()">SALIN NOMOR REKENING</button>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 11 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg11.png') }}" alt="Background 11">
+
+    <div class="content">
+        <div class="kicker">Wedding Wishes</div>
+        <h2>Konfirmasi<br><span class="gold">Kehadiran</span></h2>
+
+        <p>
+            Silakan isi konfirmasi kehadiran
+            dan tuliskan doa serta ucapan
+            untuk kedua mempelai.
+        </p>
+
+        <form class="rsvp-form" id="rsvpForm">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama"
+                   placeholder="Masukkan nama Anda" required>
+
+            <label for="kehadiran">Konfirmasi Kehadiran</label>
+            <select id="kehadiran" name="kehadiran" required>
+                <option value="">Pilih kehadiran</option>
+                <option value="Hadir">Hadir</option>
+                <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+
+            <label for="jumlah_tamu">Jumlah Tamu</label>
+            <select id="jumlah_tamu" name="jumlah_tamu">
+                <option value="1">1 Orang</option>
+                <option value="2">2 Orang</option>
+                <option value="3">3 Orang</option>
+                <option value="4">4 Orang</option>
+            </select>
+
+            <label for="ucapan">Ucapan dan Doa</label>
+            <textarea id="ucapan" name="ucapan"
+                      placeholder="Tuliskan ucapan dan doa..." required></textarea>
+
+            <button class="btn" type="submit">KIRIM UCAPAN</button>
+            <div class="form-message" id="formMessage"></div>
+        </form>
+    </div>
+</section>
+
+<!-- SLIDE 12 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg12.png') }}" alt="Background 12">
+
+    <div class="content">
+        <div class="kicker">A Prayer For Us</div>
+        <h2>Doa Untuk<br><span class="gold">Kedua Mempelai</span></h2>
+
+        <div class="info-box">
+            <p style="font-size:17px;line-height:2;">
+                بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ
+                وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+            </p>
+            <div class="small-line"></div>
+            <p>
+                “Semoga Allah memberkahimu,
+                melimpahkan berkah atasmu,
+                dan mengumpulkan kalian berdua
+                dalam kebaikan.”
+            </p>
+        </div>
+
+        <p class="gold">Aamiin Ya Rabbal 'Alamin.</p>
+    </div>
+</section>
+
+<!-- SLIDE 13 -->
+<section class="slide">
+    <img class="slide-bg" src="{{ url_for('static', filename='bg13.png') }}" alt="Background 13">
+
+    <div class="content">
+        <div class="kicker">The Beginning Of Forever</div>
+        <h2>Terima Kasih</h2>
+
+        <div class="ampersand">&</div>
+
+        <h1>Farid <span class="gold">&</span> Mega</h1>
+
+        <div class="small-line"></div>
+
+        <p>
+            Merupakan suatu kebahagiaan
+            bagi kami atas kehadiran,
+            doa, dan restu yang diberikan.
+        </p>
+
+        <p style="margin-top:20px;">
+            Wassalamu'alaikum Warahmatullahi Wabarakatuh
+        </p>
+
+        <p class="gold" style="margin-top:25px;">
+            11 – 13 Desember 2026
+        </p>
+
+        <button class="btn" onclick="goToFirstSlide()">KEMBALI KE AWAL</button>
+    </div>
+</section>
+
+<!-- NAVIGASI -->
+<div class="navigation">
+    <button class="nav-btn" onclick="previousSlide()" aria-label="Slide sebelumnya">‹</button>
+    <span class="slide-number" id="slideNumber">01 / 13</span>
+    <button class="nav-btn" onclick="nextSlide()" aria-label="Slide berikutnya">›</button>
+</div>
+
+<div class="progress" id="progress"></div>
+
+</div>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+const slideNumber = document.getElementById("slideNumber");
+const progress = document.getElementById("progress");
+const music = document.getElementById("music");
+
+let currentSlide = 0;
+let invitationOpened = false;
+let slideTimer = null;
+
+/* EFEK MASUK UNTUK SETIAP SLIDE */
+const effects = [
+    "effect-zoom",
+    "effect-up",
+    "effect-diagonal",
+    "effect-zoom-out",
+    "effect-blur",
+    "effect-right",
+    "effect-rotate",
+    "effect-down",
+    "effect-zoom",
+    "effect-glow",
+    "effect-left",
+    "effect-soft",
+    "effect-flip"
+];
+
+function showSlide(index) {
+    if (index < 0) {
+        index = slides.length - 1;
+    }
+
+    if (index >= slides.length) {
+        index = 0;
+    }
+
+    slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+
+        effects.forEach(effect => {
+            slide.classList.remove(effect);
+        });
+
+        slide.style.animation = "none";
+    });
+
+    currentSlide = index;
+
+    const selectedSlide = slides[index];
+
+    selectedSlide.classList.add("active");
+
+    /* Paksa browser memulai animasi dari awal */
+    void selectedSlide.offsetWidth;
+
+    selectedSlide.style.animation = "";
+    selectedSlide.classList.add(effects[index]);
+
+    slideNumber.textContent =
+        String(index + 1).padStart(2, "0") +
+        " / " +
+        String(slides.length).padStart(2, "0");
+
+    progress.style.width =
+        ((index + 1) / slides.length * 100) + "%";
+
+    restartTimer();
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function previousSlide() {
+    showSlide(currentSlide - 1);
+}
+
+function openInvitation() {
+    invitationOpened = true;
+
+    music.play().then(() => {
+        document.getElementById("musicButton").textContent = "♫";
+    }).catch(() => {
+        document.getElementById("musicButton").textContent = "♪";
+    });
+
+    showSlide(1);
+}
+
+function restartTimer() {
+    clearInterval(slideTimer);
+
+    /* Slide cover menunggu tombol buka undangan */
+    /* Slide RSVP berhenti agar tamu bisa mengisi form */
+    if (!invitationOpened || currentSlide === 10) {
+        return;
+    }
+
+    slideTimer = setInterval(() => {
+        nextSlide();
+    }, 5000);
+}
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play().then(() => {
+            document.getElementById("musicButton").textContent = "♫";
+        }).catch(() => {
+            alert("Musik belum dapat diputar. Periksa file musik.mp3.");
+        });
+    } else {
+        music.pause();
+        document.getElementById("musicButton").textContent = "♪";
+    }
+}
+
+function goToFirstSlide() {
+    invitationOpened = false;
+    clearInterval(slideTimer);
+    showSlide(0);
+}
+
+function copyAccount() {
+    const accountNumber = "1238418704";
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(accountNumber)
+            .then(() => alert("Nomor rekening berhasil disalin."))
+            .catch(() => alert("Gagal menyalin nomor rekening."));
+    } else {
+        const temp = document.createElement("textarea");
+        temp.value = accountNumber;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        temp.remove();
+        alert("Nomor rekening berhasil disalin.");
+    }
+}
+
+/* HITUNG MUNDUR */
+function updateCountdown() {
+    const weddingDate = new Date("2026-12-11T08:00:00+07:00");
+    const now = new Date();
+    const distance = weddingDate.getTime() - now.getTime();
+
+    if (distance <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* FORM RSVP */
+document.getElementById("rsvpForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const message = document.getElementById("formMessage");
+    const submitButton = this.querySelector('button[type="submit"]');
+
+    const data = {
+        nama: document.getElementById("nama").value.trim(),
+        kehadiran: document.getElementById("kehadiran").value,
+        jumlah_tamu: document.getElementById("jumlah_tamu").value,
+        ucapan: document.getElementById("ucapan").value.trim()
+    };
+
+    if (!data.nama || !data.kehadiran || !data.ucapan) {
+        message.textContent = "Mohon lengkapi data terlebih dahulu.";
+        return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "MENGIRIM...";
+
+    try {
+        const response = await fetch("/kirim-ucapan", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.pesan || "Gagal mengirim ucapan.");
+        }
+
+        message.textContent = result.pesan || "Terima kasih, ucapan berhasil dikirim.";
+        this.reset();
+
+    } catch (error) {
+        message.textContent = error.message || "Terjadi kesalahan. Silakan coba lagi.";
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "KIRIM UCAPAN";
+    }
+});
+
+/* TAMPILKAN SLIDE PERTAMA */
+showSlide(0);
+</script>
+
+</body>
+</html>
